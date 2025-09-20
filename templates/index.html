@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TESA — RDS Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220cc;
+      --muted:#9aa4b2;
+      --accent1:#5eead4; /* teal */
+      --accent2:#60a5fa; /* blue */
+      --glass: rgba(255,255,255,0.06);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(96,165,250,0.08), transparent),
+                  radial-gradient(900px 500px at 90% 90%, rgba(94,234,212,0.06), transparent),
+                  var(--bg);
+      color:#e6eef8; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      padding:48px;
+    }
+    .container{max-width:1100px;margin:0 auto}
+ 
+    header{
+      display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;
+    }
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:grid;place-items:center;font-weight:800;color:#061024;font-size:20px;box-shadow:0 6px 18px rgba(2,6,23,0.6);
+    }
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:var(--muted)}
+ 
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03); padding:20px;border-radius:14px;backdrop-filter: blur(6px);
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);}
+ 
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:20px;margin-bottom:22px;align-items:stretch}
+    .hero .main{padding:28px}
+    .hero h2{margin:0 0 12px 0;font-size:26px}
+    .hero p{color:var(--muted);line-height:1.5}
+ 
+    .panel{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));}
+    .panel h3{margin:0 0 12px 0}
+    .muted{color:var(--muted);font-size:14px}
+ 
+    .table-wrap{overflow:auto;margin-top:14px}
+    table{width:100%;border-collapse:collapse;font-size:14px}
+    th,td{padding:12px 14px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.03)}
+    th{font-weight:600;color:#cfe9ff;background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));}
+ 
+    .actions{display:flex;gap:10px;margin-top:14px}
+    .btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent2)}
+    .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#041024}
+ 
+    footer{display:flex;justify-content:space-between;align-items:center;margin-top:22px;color:var(--muted);font-size:13px}
+ 
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      body{padding:20px}
+    }
+ 
+    /* small flashy indicator */
+    .status{display:inline-flex;gap:8px;align-items:center}
+    .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(180deg,var(--accent1),var(--accent2));box-shadow:0 4px 10px rgba(96,165,250,0.12)}
+ 
+    /* code block */
+    pre{background:#07111a;padding:12px;border-radius:8px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;font-size:13px;color:#cfe9ff;overflow:auto}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<div class="brand">
+<div class="logo">T</div>
+<div>
+<h1>TESA — RDS Dashboard</h1>
+<p class="lead">Manage and preview academic records stored in your RDS instance</p>
+</div>
+</div>
+<div class="status">
+<div class="dot" aria-hidden></div>
+<div class="muted">Public Subnet · Port 1433 · Secured by SG</div>
+</div>
+</header>
+ 
+    <div class="hero">
+<div class="card main">
+<h2>Quick overview</h2>
+<p class="muted">This page is a lightweight admin mockup illustrating the TESA table and sample academic records. It's single-file HTML + CSS and includes copyable SQL snippets for quick use in SSMS.</p>
+ 
+        <div class="panel" style="margin-top:16px">
+<h3>TESA table (sample)</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>#</th><th>TESA_FACULTY</th><th>FACULTY_HEAD</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>Faculty of Science</td><td>Dr. Adaeze Okonkwo</td></tr>
+<tr><td>2</td><td>Faculty of Engineering</td><td>Prof. Ibrahim Musa</td></tr>
+<tr><td>3</td><td>Faculty of Arts</td><td>Dr. Chima Ude</td></tr>
+<tr><td>4</td><td>Faculty of Medicine</td><td>Prof. Amina Bello</td></tr>
+</tbody>
+</table>
+</div>
+ 
+          <div class="actions">
+<button class="btn btn-primary" id="copySQL">Copy SQL to clipboard</button>
+<button class="btn btn-ghost" id="download">Download HTML</button>
+</div>
+<p class="muted" style="margin-top:10px">Sample SQL can be pasted into SSMS to create the TESA table and insert demo rows.</p>
+ 
+          <pre id="sqlBlock">-- Create table
+CREATE TABLE TESA (
+  TESA_FACULTY VARCHAR(150),
+  FACULTY_HEAD VARCHAR(150)
+);
+ 
+-- Insert sample rows
+INSERT INTO TESA (TESA_FACULTY, FACULTY_HEAD) VALUES
+('Faculty of Science','Dr. Adaeze Okonkwo'),
+('Faculty of Engineering','Prof. Ibrahim Musa'),
+('Faculty of Arts','Dr. Chima Ude'),
+('Faculty of Medicine','Prof. Amina Bello');</pre>
+</div>
+ 
+      </div>
+ 
+      <aside class="card panel">
+<h3>Connection details</h3>
+<p class="muted">Use these instructions in SSMS to connect to your RDS endpoint.</p>
+<ul class="muted" style="padding-left:18px">
+<li>Server name: <strong>&lt;your-rds-endpoint&gt;,1433</strong></li>
+<li>Authentication: SQL Server Authentication</li>
+<li>Username: <strong>&lt;rds-username&gt;</strong></li>
+<li>Password: <strong>&lt;your-password&gt;</strong></li>
+</ul>
+ 
+        <h3 style="margin-top:14px">Security group</h3>
+<p class="muted">Allow inbound TCP 1433 from your IP. Outbound may remain unrestricted to allow responses.</p>
+ 
+        <h3 style="margin-top:14px">Notes</h3>
+<p class="muted">Database is in a <strong>public subnet</strong> for direct SSMS access — ensure IP whitelist and monitoring.</p>
+</aside>
+</div>
+ 
+    <footer>
+<div class="muted">Built for TESA · RDS (MSSQL)</div>
+<div class="muted">Made with ❤️ — export or edit as needed</div>
+</footer>
+</div>
+ 
+  <script>
+    document.getElementById('copySQL').addEventListener('click', async () => {
+      const sql = document.getElementById('sqlBlock').innerText;
+      try{
+        await navigator.clipboard.writeText(sql);
+        alert('SQL copied to clipboard — paste into SSMS.');
+      }catch(e){
+        prompt('Copy this SQL manually:', sql);
+      }
+    });
+ 
+    document.getElementById('download').addEventListener('click', () => {
+      const blob = new Blob([document.documentElement.outerHTML], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'TESA_rds_dashboard.html'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+</script>
+</body>
+</html>
